@@ -3,6 +3,11 @@ $(document).ready(function() {
     console.log( 'on click button' );
     //get user input for the search
     var movieTitle = $( '#searchIn' ).val();
+    // alert the user if they left the input empty when trying to search
+    if(movieTitle === '') {
+      $('#inputErrorModal').modal('show');
+      return;
+    }
     console.log('searching for: ',movieTitle);
     //assemble search string url
     var searchUrl = 'https://www.omdbapi.com/?s=' + movieTitle;
@@ -13,8 +18,6 @@ $(document).ready(function() {
       dataTyle: 'JSON',
       success: function(data) {
         console.log('success, data: ', data);
-        // parse the returned data
-
         displaySearchResults(data);
       }
     }); // end ajax
@@ -22,13 +25,16 @@ $(document).ready(function() {
 
   var displaySearchResults = function(data) {
     console.log('in displaySearchResults');
+    // parse the returned data
+    var movieText = '';
     for (var i = 0; i < data.Search.length; i++) {
       console.log(data.Search[i]);
-      // display the data on the DOM
-      $('#outputDiv').append('<p>'+data.Search[i].Title+ ', '+ data.Search[i].Year +'</p>');
-      $('#outputDiv').append('<p>'+data.Search[i].imdbID+ ', '+ data.Search[i].Type +'</p>');
-      $('#outputDiv').append('<img src="'+data.Search[i].Poster +'"/>');
+      movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ data.Search[i].imdbID + '"><p><strong> ' + data.Search[i].Title + ', ' +data.Search[i].Year + '</strong></p>';
+      movieText += '<img src="' + data.Search[i].Poster + '" class="thumbnail posterImg"/>';
+      movieText += '<button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div>';
     }
+    // display the data on the DOM
+    $('#outputDiv').html(movieText);
   }; // end displaySearchResults
 
 }); // end doc ready
