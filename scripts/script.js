@@ -36,5 +36,9 @@ $(document).ready(function() {
     // display the data on the DOM
     $('#outputDiv').html(movieText);
   }; // end displaySearchResults
-
 }); // end doc ready
+
+//button click event for delete button
+  $( document ).on( 'click', '.btn_delete', function(event) {
+     $(this).closest('.movie').remove();
+ }); // end on click for .btn_delete

@@ -15,9 +15,12 @@
 
 /* --  BUTTON -- */
 .btn-default {
+  background-image: none;
   background-color: #515150;
   color: #fff;
-  margin-top: 10px;
+  margin-top: 5px;
+  text-shadow: none;
+  transition: 0.2s ease;
 }
 .btn_delete {
   background-color: #d9534f;
@@ -27,3 +30,8 @@
     background-color: #d9534f;
     color: #515150;
   }
+/* --  MODAL   --*/
+.modal-header {
+  background-color: #d9534f;
+  color: #fff;
+}
