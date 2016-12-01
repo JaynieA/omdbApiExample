@@ -22,3 +22,5 @@ Stretch Goals
 [x] remove movies from the DOM after a search
 [x] instead of replacing the existing search results, append more movies to the DOM on the next search (an array sound handy for this)
 [x] JQuery animations for transitions
+[x] create functionality to choose and display favorites
+[ ] refactor/change delete from favorites so that it deletes from favorites instead of movies array
