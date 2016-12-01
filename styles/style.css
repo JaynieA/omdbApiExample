@@ -1,25 +1,42 @@
+/* --  GLOBAL -- */
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
+/* --  LAYOUT -- */
 .movie {
   margin: 10px;
   border: 2px solid #515150;
   border-radius: 4px;
   padding: 10px;;
 }
+.movie-footer {
+  border-top: 1px solid #e5e5e5;
+  padding: 10px;
+}
 .posterImg {
   max-width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
+
 }
 #outputDiv>.col-sm-3 {
   margin-top: 20px;
 }
 /* --  BUTTON -- */
-.btn-default {
-  background-image: none;
-  background-color: #515150;
-  color: #fff;
-  margin-top: 5px;
-  text-shadow: none;
+.btn_green {
+  color: #439f46;
+  border-radius: 2px;
+  border: 2px solid #439f46;
+  text-transform: uppercase;
+  background-color: transparent;
+  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
+  .btn_green:hover {
+    background-color: #439f46;
+    border: 2px solid #439f46;
+    color: #fff;
+    outline: none;
+  }
 .btn_delete {
   background-color: #d9534f;
   color: #fff;
@@ -29,6 +46,9 @@
     color: #515150;
   }
 /* --  MODAL   --*/
+.modal {
+  top: 10%;
+}
 .modal-header {
   background-color: #d9534f;
   color: #fff;

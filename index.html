@@ -10,21 +10,26 @@
     <script src="scripts/script.js" charset="utf-8"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/style.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
     <h1 class="text-center">Tau API Intro</h1>
     <div class="container">
-        <div class="form-group">
-            <label for="searchIn">Search: </label>
-            <input type="text" id="searchIn" class="form-control" placeholder="movie title">
+        <div class="row">
+            <form class="col-sm-6 col-sm-offset-3" id="searchForm">
+                <div class="form-group">
+                    <label for="searchIn">Search: </label>
+                    <input type="text" id="searchIn" class="form-control" placeholder="movie title">
+                </div>
+                <button type="submit" id="searchButton" class="btn btn-default btn_green">Search OMDB</button>
+            </form>
         </div>
-        <button type="button" id="searchButton" class="btn btn-default">Search OMDB</button>
+        <hr>
         <div id="outputDiv"></div>
     </div>
 
@@ -36,7 +41,7 @@
                     <h4 class="modal-title"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Error</h4>
                 </div>
                 <div class="modal-body">
-                    <p>You did not provide any imput for your search</p>
+                    <p>You did not provide any imput for your search.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -1,5 +1,11 @@
+var movies = [];
 $(document).ready(function() {
-  $( '#searchButton' ).on('click', function() {
+  //give focus to input on load
+  var searchInput = $('#searchIn');
+  searchInput.focus();
+
+  $( '#searchForm' ).on('submit', function(e) {
+    e.preventDefault();
     console.log( 'on click button' );
     //get user input for the search
     var movieTitle = $( '#searchIn' ).val();
@@ -7,11 +13,10 @@ $(document).ready(function() {
     if(movieTitle === '') {
       $('#inputErrorModal').modal('show');
       return;
-    }
+    } // end if
     console.log('searching for: ',movieTitle);
     //assemble search string url
     var searchUrl = 'https://www.omdbapi.com/?s=' + movieTitle;
-    console.log(searchUrl);
     // ajax call to that url
     $.ajax({
       url: searchUrl,
@@ -21,18 +26,27 @@ $(document).ready(function() {
         displaySearchResults(data);
       }
     }); // end ajax
-  }); // end #searchButton onclick
+    //clear search input value
+    searchInput.val('');
+    //remove focus from search input after search
+    searchInput.blur();
+  }); // end #searchForm onsubmit
 
   var displaySearchResults = function(data) {
     console.log('in displaySearchResults');
     // parse the returned data
     var movieText = '';
     for (var i = 0; i < data.Search.length; i++) {
-      console.log(data.Search[i]);
+      //push movies into movies array
+      movies.push(data.Search[i]);
       movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ data.Search[i].imdbID + '"><p><strong> ' + data.Search[i].Title + ', ' +data.Search[i].Year + '</strong></p>';
       movieText += '<img src="' + data.Search[i].Poster + '" class="thumbnail posterImg"/>';
-      movieText += '<button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div>';
+      movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div></div>';
+
     }
+
+
+    console.log(movies);
     // display the data on the DOM
     $('#outputDiv').html(movieText);
   }; // end displaySearchResults
