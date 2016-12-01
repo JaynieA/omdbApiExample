@@ -29,6 +29,10 @@ h1 {
   clear:left;
 }
 /* --  BUTTON -- */
+#displayFavorites {
+  float: right;
+  margin-bottom: 100px;
+}
 .btn-default {
   border: none;
   margin: 0px 5px;
@@ -42,7 +46,7 @@ h1 {
   transition: 0.2s ease;
   -webkit-transition: 0.2s ease;
 }
-  .btn_favorite:hover {
+  .btn_favorite:hover, .btn_favorite:active, .btn_favorite:focus, .btn_favorite:active:hover, .btn_favorite:focus:active {
     color: #515150;
     background-color: #439f46;
   }

@@ -74,13 +74,21 @@ $( document ).on( 'click', '.btn_delete', function(event) {
   } // end for
 }); // end on click for .btn_delete
 
-//button click event for favorite button
+//button click event for .btn_favorite
 $( document ).on( 'click', '.btn_favorite', function(event) {
   //push favorited movie to favorites array
   for (var i = 0; i < movies.length; i++) {
     if (movies[i].imdbID === $(this).closest('.movie').data().id) {
+      // add this movie to favorites array
       favorite.push(movies[i]);
+      $(this).find('span').removeClass('glyphicon-star');
+      $(this).find('span').addClass('glyphicon-ok');
       console.log(favorite);
-    }
-  }
-});
+    } // end if
+  } // end for
+}); // end onclick for .btn_favorite
+
+//button click event to display favorites
+$( document ).on('click', '#displayFavorites', function() {
+  console.log('display favorites clicked');
+}); // end onclick for #displayFavorites
