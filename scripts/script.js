@@ -34,18 +34,17 @@ $(document).ready(function() {
 
   var displaySearchResults = function(data) {
     console.log('in displaySearchResults');
-    // parse the returned data
-    var movieText = '';
     for (var i = 0; i < data.Search.length; i++) {
-      //push movies into movies array
-      movies.push(data.Search[i]);
-      movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ data.Search[i].imdbID + '"><p><strong> ' + data.Search[i].Title + ', ' +data.Search[i].Year + '</strong></p>';
-      movieText += '<img src="' + data.Search[i].Poster + '" class="thumbnail posterImg"/>';
-      movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div></div>';
-
+      //push (unshift) movies into front of movies array
+      movies.unshift(data.Search[i]);
     }
-
-
+    var movieText = '';
+    // iterate through movies array, parse data and display on the DOM
+    for (var y = 0; y < movies.length; y++) {
+      movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ movies[y].imdbID + '"><p><strong> ' + movies[y].Title + ', ' + movies[y].Year + '</strong></p>';
+      movieText += '<img src="' + movies[y].Poster + '" class="thumbnail img-responsive posterImg"/>';
+      movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div></div>';
+    }
     console.log(movies);
     // display the data on the DOM
     $('#outputDiv').html(movieText);
@@ -53,6 +52,17 @@ $(document).ready(function() {
 }); // end doc ready
 
 //button click event for delete button
-  $( document ).on( 'click', '.btn_delete', function(event) {
-     $(this).closest('.movie').remove();
- }); // end on click for .btn_delete
+$( document ).on( 'click', '.btn_delete', function(event) {
+  // fadeOut the removed movie from the DOM
+  $(this).closest('.movie').fadeOut();
+  // iterate through movies array to match omdbID with data attribute of movie to delete
+  for (var i = 0; i < movies.length; i++) {
+    if (movies[i].imdbID === $(this).closest('.movie').data().id) {
+      var index = movies.indexOf(movies[i]);
+      //remove the movie from movies array
+      if (index > -1) {
+          movies.splice(index, 1);
+      }
+    }
+  }
+}); // end on click for .btn_delete

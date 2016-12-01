@@ -15,3 +15,10 @@ Objectives
 * ajax call to that url
 * parse the returned data
 * display the data on the DOM
+
+Stretch Goals
+==============
+[x] alert the user if they left the input empty when trying to search
+[x] remove movies from the DOM after a search
+[x] instead of replacing the existing search results, append more movies to the DOM on the next search (an array sound handy for this)
+[x] JQuery animations for transitions
