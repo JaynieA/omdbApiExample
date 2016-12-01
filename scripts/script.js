@@ -91,6 +91,13 @@ $( document ).on( 'click', '.btn_favorite', function(event) {
 //button click event to display favorites
 $( document ).on('click', '#displayFavorites', function() {
   console.log('display favorites clicked');
-  //relace movies on DOM with favorites
-  updateMoviesOnDOM(favorite);
+  //replace movies on DOM with favorites
+  if ($(this).html() === 'Display Favorites') {
+    $(this).text('Display All Movies');
+    updateMoviesOnDOM(favorite);
+  // go back to displaying all movies in movies array
+  } else {
+    $(this).text('Display Favorites');
+    updateMoviesOnDOM(movies);
+  } // end if/ else
 }); // end onclick for #displayFavorites
