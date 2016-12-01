@@ -1,4 +1,5 @@
 var movies = [];
+var favorite = [];
 $(document).ready(function() {
   //give focus to search input on load
   var searchInput = $('#searchIn');
@@ -46,7 +47,8 @@ var updateMoviesOnDOM = function() {
   for (var y = 0; y < movies.length; y++) {
     movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ movies[y].imdbID + '"><p><strong> ' + movies[y].Title + ', ' + movies[y].Year + '</strong></p>';
     movieText += '<img src="' + movies[y].Poster + '" class="thumbnail img-responsive posterImg"/>';
-    movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div></div>';
+    movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+    movieText += '<button class="btn btn-default btn-sm btn_favorite"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button></div></div></div>';
   } // end for
   console.log(movies);
   // display the data on the DOM
@@ -71,3 +73,14 @@ $( document ).on( 'click', '.btn_delete', function(event) {
     }
   } // end for
 }); // end on click for .btn_delete
+
+//button click event for favorite button
+$( document ).on( 'click', '.btn_favorite', function(event) {
+  //push favorited movie to favorites array
+  for (var i = 0; i < movies.length; i++) {
+    if (movies[i].imdbID === $(this).closest('.movie').data().id) {
+      favorite.push(movies[i]);
+      console.log(favorite);
+    }
+  }
+});

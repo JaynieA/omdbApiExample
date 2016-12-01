@@ -29,6 +29,26 @@ h1 {
   clear:left;
 }
 /* --  BUTTON -- */
+.btn-default {
+  border: none;
+  margin: 0px 5px;
+}
+  .btn-default:hover {
+    border: none;
+  }
+.btn_favorite {
+  color: #fff;
+  background-color: #439f46;
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+}
+  .btn_favorite:hover {
+    color: #515150;
+    background-color: #439f46;
+  }
+  .btn_favorite>span {
+    padding-left: 2px;
+  }
 .btn_green {
   color: #439f46;
   border-radius: 2px;
