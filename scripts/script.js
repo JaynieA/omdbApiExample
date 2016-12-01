@@ -37,20 +37,20 @@ $(document).ready(function() {
       //push (unshift) movies into FRONT of movies array
       movies.unshift(data.Search[i]);
     } // end for
-    updateMoviesOnDOM();
+    updateMoviesOnDOM(movies);
   }; // end displaySearchResults
 }); // end doc ready
 
-var updateMoviesOnDOM = function() {
+var updateMoviesOnDOM = function(arrayToDisplay) {
   var movieText = '';
   // iterate through movies array, parse data and display on the DOM
-  for (var y = 0; y < movies.length; y++) {
-    movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ movies[y].imdbID + '"><p><strong> ' + movies[y].Title + ', ' + movies[y].Year + '</strong></p>';
-    movieText += '<img src="' + movies[y].Poster + '" class="thumbnail img-responsive posterImg"/>';
+  for (var y = 0; y < arrayToDisplay.length; y++) {
+    movieText += '<div class="col-sm-3"><div class="movie text-center" data-id="'+ arrayToDisplay[y].imdbID + '"><p><strong> ' + arrayToDisplay[y].Title + ', ' + arrayToDisplay[y].Year + '</strong></p>';
+    movieText += '<img src="' + arrayToDisplay[y].Poster + '" class="thumbnail img-responsive posterImg"/>';
     movieText += '<div class="movie-footer"><button class="btn btn-default btn-sm btn_delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
     movieText += '<button class="btn btn-default btn-sm btn_favorite"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button></div></div></div>';
   } // end for
-  console.log(movies);
+  console.log(arrayToDisplay);
   // display the data on the DOM
   $('#outputDiv').html(movieText);
 }; // end updateMoviesOnDOM
@@ -60,7 +60,7 @@ $( document ).on( 'click', '.btn_delete', function(event) {
   // fadeOut and remove movie from the DOM
   $(this).closest('.movie').fadeOut(500, function() {
     $(this).remove();
-    updateMoviesOnDOM();
+    updateMoviesOnDOM(movies);
   }); // end fadeOut
   // iterate through movies array to find the movie with the same imdbID as the deleted movie's data attribute
   for (var i = 0; i < movies.length; i++) {
@@ -91,4 +91,6 @@ $( document ).on( 'click', '.btn_favorite', function(event) {
 //button click event to display favorites
 $( document ).on('click', '#displayFavorites', function() {
   console.log('display favorites clicked');
+  //relace movies on DOM with favorites
+  updateMoviesOnDOM(favorite);
 }); // end onclick for #displayFavorites

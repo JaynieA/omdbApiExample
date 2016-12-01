@@ -62,7 +62,7 @@ h1 {
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
-  .btn_green:hover {
+  .btn_green:hover, .btn_green:active, .btn_green:focus, .btn_green:active:hover, .btn_green:focus:active {
     background-color: #439f46;
     border: 2px solid #439f46;
     color: #fff;
