@@ -2,6 +2,10 @@
 html, body {
   font-family: 'Roboto', sans-serif;
 }
+h1 {
+  font-size: 22px;
+  text-transform: uppercase;
+}
 /* --  LAYOUT -- */
 .movie {
   margin: 10px;
